@@ -6,48 +6,7 @@
 #include<functional>
 using namespace std;
 
-class MyIntCompare {
-public:
-	bool operator()(int a, int b) {
-		return a > b;
-	}
-};
-
-// Funktio-objekti, joka vertailee kahden Carn ikaa (pienemmästä suurempaan)
-class ComparePersonsByAgeAscending {
-public:
-	// Funktio-objekti c++:ssa on objekti, jolta löytyy operator() eli objektia voi kutsua (callable object)
-	bool operator()(const Car& a, const Car& b) {
-		return a.getYear() < b.getYear();
-	}
-};
-
-class ComparePersonsByAgeAscendingPtr {
-public:
-	// Funktio-objekti c++:ssa on objekti, jolta löytyy operator() eli objektia voi kutsua (callable object)
-	bool operator()( const Car* a, const Car* b) {
-		return a->getYear() < b->getYear();
-	}
-};
-
-class ComparePersonsByAgeAscendingUniquePtr {
-public:
-	// Funktio-objekti c++:ssa on objekti, jolta löytyy operator() eli objektia voi kutsua (callable object)
-	bool operator()(unique_ptr<Car>& a, unique_ptr<Car>& b) {
-		return a->getYear() < b->getYear();
-	}
-};
-
-class HelloWorldFunctionClass {
-public:
-	void operator() () {
-		cout << "Hello world!" << endl;
-	}
-};
-
-
-
-void menu() {
+int main() {
 	vector<unique_ptr<Car>> carsUniquePtr;
 	carsUniquePtr.push_back(make_unique<Car>("Mustang", 1980));
 	carsUniquePtr.push_back(make_unique<Car>("Fiesta", 2019));
@@ -132,10 +91,5 @@ void menu() {
 			system("pause");
 		}
 	}
-}
-
-int main() {
-	menu();
-	system("pause");
 	return EXIT_SUCCESS;
 }

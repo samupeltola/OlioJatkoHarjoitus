@@ -14,7 +14,6 @@ Car::Car(const string& aModel, int aYear) : year( aYear ), model( aModel )
 
 Car::~Car()
 {
-	// Vapautetaan olion varaama dynaaminen muisti ja muut resurssit
 	cout << "Car " << model << "'s purkaja" << endl;
 }
 
@@ -42,8 +41,7 @@ void Car::setYear(int aYear)
 			if (listener) {
 				listener->yearChanged(aYear);
 			}
-			// Funktionaalinen eventin lähetys
-			if (yearChanged) { // tarkastetaan onko function<void(int)> asetettu
+			if (yearChanged) { // check for function<void(int)>
 				yearChanged(aYear);
 			}
 		}

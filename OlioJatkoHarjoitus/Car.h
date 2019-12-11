@@ -13,9 +13,8 @@ public:
 class Car
 {
 public:
-	Car(); // Oletusrakentaja ei luo osoitetta, vaan osoite on nullptr
+	Car();
 	Car(const string& aModel, int aYear);
-	// Muistetaan vapauttaa resurssit, jos sellaisia on varattuna
 	virtual ~Car(); 
 
 	string getModel() const;
@@ -27,9 +26,8 @@ public:
 
 	void addCarListener(CarListener* aNewListener) {
 		listener = aNewListener;
-		// listeners.push_back( aNewListener )
 	}
-	// Funktionaalinen observer
+	// functional observer
 	function<void(int)> yearChanged;
 
 private:
@@ -47,7 +45,7 @@ public:
 		cout << "Functional: Car year changed. New model year: " << aNewYear << endl;
 	}
 
-	// Kuuntelijarajapinnan (observer interface) toteutus
+	// observer interface
 	virtual void yearChanged(int aNewYear) {
 		cout << "Car year changed. New model year: " << aNewYear << endl;
 	}
