@@ -22,13 +22,8 @@ public:
 	void setModel(const string& aModel);
 	int getYear() const;
 	void setYear(int aYear);
-	// Osoite p‰ivitet‰‰n, jos oliolla on jo osoite
-	// Muuten luodaan osoite dynaamisesti nullptr:n tilalle
 	virtual void printInfo() const;
-
-	// M‰‰ritell‰‰n luokalle Policy Object -tietoj‰sen (lambda)
-	// eli jokaisella oliolla on oma, uniikki toiminnallisuutensa
-	function<void(int)> tulostusPolicy = [](int a) { cout << "TulostusPolicy" << endl; };
+	function<void(int)> tulostusPolicy = [](int a) { cout << "Success!" << endl; };
 
 	void addCarListener(CarListener* aNewListener) {
 		listener = aNewListener;
@@ -41,8 +36,6 @@ private:
 	int year = 0;
 	string model = "";
 	CarListener* listener = nullptr;
-	//vector<CarListener*> listeners;
-
 };
 
 class MyClass : public CarListener { // MyClass IS-A CarListener
@@ -51,12 +44,12 @@ public:
 	~MyClass() {};
 
 	void yearChangedFunctional(int aNewYear) {
-		cout << "Functional: Carn year muuttunut. Uusi year: " << aNewYear << endl;
+		cout << "Functional: Car year changed. New model year: " << aNewYear << endl;
 	}
 
 	// Kuuntelijarajapinnan (observer interface) toteutus
 	virtual void yearChanged(int aNewYear) {
-		cout << "Car model year changed. New year: " << aNewYear << endl;
+		cout << "Car year changed. New model year: " << aNewYear << endl;
 	}
 
 };
