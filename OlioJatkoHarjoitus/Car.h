@@ -7,21 +7,21 @@ using namespace std;
 
 class CarListener {
 public:
-	virtual void ageChanged(int aNewAge) = 0;
+	virtual void yearChanged(int aNewYear) = 0;
 };
 
 class Car
 {
 public:
 	Car(); // Oletusrakentaja ei luo osoitetta, vaan osoite on nullptr
-	Car(const string& aModel, int aIka);
+	Car(const string& aModel, int aYear);
 	// Muistetaan vapauttaa resurssit, jos sellaisia on varattuna
 	virtual ~Car(); 
 
 	string getModel() const;
 	void setModel(const string& aModel);
 	int getYear() const;
-	void setIka(int aIka);
+	void setYear(int aYear);
 	// Osoite p‰ivitet‰‰n, jos oliolla on jo osoite
 	// Muuten luodaan osoite dynaamisesti nullptr:n tilalle
 	virtual void printInfo() const;
@@ -35,10 +35,10 @@ public:
 		// listeners.push_back( aNewListener )
 	}
 	// Funktionaalinen observer
-	function<void(int)> ageChanged;
+	function<void(int)> yearChanged;
 
 private:
-	int ika = 0;
+	int year = 0;
 	string model = "";
 	CarListener* listener = nullptr;
 	//vector<CarListener*> listeners;
@@ -50,13 +50,13 @@ public:
 	MyClass() {};
 	~MyClass() {};
 
-	void ageChangedFunctional(int aNewAge) {
-		cout << "Functional: Carn ika muuttunut. Uusi ika: " << aNewAge << endl;
+	void yearChangedFunctional(int aNewYear) {
+		cout << "Functional: Carn year muuttunut. Uusi year: " << aNewYear << endl;
 	}
 
 	// Kuuntelijarajapinnan (observer interface) toteutus
-	virtual void ageChanged(int aNewAge) {
-		cout << "Carn ika muuttunut. Uusi ika: " << aNewAge << endl;
+	virtual void yearChanged(int aNewYear) {
+		cout << "Car model year changed. New year: " << aNewYear << endl;
 	}
 
 };

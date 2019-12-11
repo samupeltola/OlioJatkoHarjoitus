@@ -2,12 +2,12 @@
 #include<iostream>
 using namespace std;
 
-Car::Car() : ika( 0 ), model( "" )
+Car::Car() : year( 0 ), model( "" )
 {
 	cout << "Carn rakentaja" << endl;
 }
 
-Car::Car(const string& aModel, int aIka) : ika( aIka ), model( aModel )
+Car::Car(const string& aModel, int aYear) : year( aYear ), model( aModel )
 {
 	cout << "Carn 2 parametrinen rakentaja" << endl;
 }
@@ -30,26 +30,26 @@ void Car::setModel(const string& aModel)
 
 int Car::getYear() const
 {
-	return ika;
+	return year;
 }
 
-void Car::setIka(int aIka)
+void Car::setYear(int aYear)
 {
-	if (ika >= 0) {	
-		if (aIka != ika) {
-			ika = aIka;
+	if (year >= 0) {	
+		if (aYear != year) {
+			year = aYear;
 			// Jos ikä muuttu, informoi kuuntelijoita (observers/listeners)
 			if (listener) {
-				listener->ageChanged(aIka);
+				listener->yearChanged(aYear);
 			}
 			/* Vektorillinen kuuntelijoita
 					for( CarListener* listener : listeners ){
-						listener->ageChanged( aIka );
+						listener->yearChanged( aYear );
 					}
 			*/
 			// Funktionaalinen eventin lähetys
-			if (ageChanged) { // tarkastetaan onko function<void(int)> asetettu
-				ageChanged(aIka);
+			if (yearChanged) { // tarkastetaan onko function<void(int)> asetettu
+				yearChanged(aYear);
 			}
 		}
 	}
@@ -59,7 +59,7 @@ void Car::setIka(int aIka)
 void Car::printInfo() const
 {
 	cout << "Model: " << model << endl;
-	cout << "Year: " << ika << endl;
+	cout << "Year: " << year << endl;
 	if (tulostusPolicy) { // policy -objekti määritelty
 		tulostusPolicy(10);
 	}
